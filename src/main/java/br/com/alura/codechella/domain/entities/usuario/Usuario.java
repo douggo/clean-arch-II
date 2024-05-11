@@ -1,17 +1,20 @@
 package br.com.alura.codechella.domain.entities.usuario;
 
+import br.com.alura.codechella.domain.Endereco;
+
 import java.time.LocalDate;
 import java.util.Objects;
 
 public class Usuario {
 
-    private String nome;
-    private String cpf;
-    private LocalDate nascimento;
-    private String email;
+    private final String cpf;
+    private final String nome;
+    private final LocalDate nascimento;
+    private final String email;
+    private Endereco endereco;
 
     public Usuario(String cpf, String nome, LocalDate nascimento, String email) {
-        this.validateData(cpf, nome, nascimento, email);
+        Validator.validateData(cpf, nome, nascimento, email);
         this.cpf = cpf;
         this.nome = nome;
         this.nascimento = nascimento;
@@ -22,42 +25,34 @@ public class Usuario {
         return cpf;
     }
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
     public String getNome() {
         return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public LocalDate getNascimento() {
         return nascimento;
     }
 
-    public void setNascimento(LocalDate nascimento) {
-        this.nascimento = nascimento;
-    }
-
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public Endereco getEndereco() {
+        return endereco;
     }
 
-    public void validateData(String cpf, String nome, LocalDate dataNascimento, String email) {
-        Validator.validateCpf(cpf);
-        Validator.validateNome(nome);
-        Validator.validateDataNascimento(dataNascimento);
-        Validator.validateEmail(email);
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
     }
 
     static class Validator {
+
+        public static void validateData(String cpf, String nome, LocalDate nascimento, String email) {
+            validateCpf(cpf);
+            validateNome(nome);
+            validateDataNascimento(nascimento);
+            validateEmail(email);
+        }
 
         public static void validateCpf(String cpf) throws IllegalArgumentException {
             if (!Objects.isNull(cpf) && cpf.matches("\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}")) {

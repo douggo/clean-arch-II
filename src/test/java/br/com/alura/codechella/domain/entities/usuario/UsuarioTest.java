@@ -11,6 +11,9 @@ class UsuarioTest {
     private final String cpf = "123.456.789-00";
     private final LocalDate nascimento = LocalDate.parse("1997-03-19");
     private final String email = "douglas@alura.com.br";
+    private final String cep = "12345-000";
+    private final int numero = 999;
+    private final String complemento = "Apartamento 103, bloco C";
 
     @Test
     public void shouldNotCreateUsuarioIfCpfIsInvalid() {
@@ -137,8 +140,29 @@ class UsuarioTest {
     }
 
     @Test
-    public void shouldCreateUsuarioIfDataIsValid() {
+    public void shouldCreateValidUsuarioIfDataIsValid() {
         Assertions.assertDoesNotThrow(() -> new Usuario(cpf, nome, nascimento, email));
+    }
+
+    @Test
+    public void shouldCreateValidUsuarioFromFactory() {
+        Usuario usuario = UsuarioFactory.create(cpf, nome, nascimento, email);
+        Assertions.assertEquals(cpf, usuario.getCpf());
+        Assertions.assertEquals(nome, usuario.getNome());
+        Assertions.assertEquals(nascimento, usuario.getNascimento());
+        Assertions.assertEquals(email, usuario.getEmail());
+    }
+
+    @Test
+    public void shouldCreateValidUsuarioWithEnderecoFromFactory() {
+        Usuario usuario = UsuarioFactory.createWithEndereco(cpf, nome, nascimento, email, cep, numero, complemento);
+        Assertions.assertEquals(cpf, usuario.getCpf());
+        Assertions.assertEquals(nome, usuario.getNome());
+        Assertions.assertEquals(nascimento, usuario.getNascimento());
+        Assertions.assertEquals(email, usuario.getEmail());
+        Assertions.assertEquals(cep, usuario.getEndereco().getCep());
+        Assertions.assertEquals(numero, usuario.getEndereco().getNumero());
+        Assertions.assertEquals(complemento, usuario.getEndereco().getComplemento());
     }
 
 }
