@@ -1,7 +1,7 @@
-package br.com.alura.codechella.service;
+package br.com.alura.codechella.deprecated.service;
 
-import br.com.alura.codechella.model.Usuario;
-import br.com.alura.codechella.repository.UsuarioRepository;
+import br.com.alura.codechella.deprecated.model.Usuario;
+import br.com.alura.codechella.deprecated.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,6 +9,7 @@ import java.util.List;
 
 @Service
 public class UsuarioServiceImpl implements UsuarioService {
+
     @Autowired
     private UsuarioRepository repository;
 
@@ -21,4 +22,5 @@ public class UsuarioServiceImpl implements UsuarioService {
     public List<Usuario> listarTodos() {
         return repository.findAll();
     }
+
 }
