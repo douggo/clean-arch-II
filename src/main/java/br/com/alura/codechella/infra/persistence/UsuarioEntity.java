@@ -1,23 +1,45 @@
-package br.com.alura.codechella.deprecated.model;
+package br.com.alura.codechella.infra.persistence;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import br.com.alura.codechella.domain.entities.usuario.Usuario;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "usuarios")
-public class Usuario {
+public class UsuarioEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String cpf;
+
     private String nome;
+
     private LocalDate nascimento;
+
     private String email;
+
+    public UsuarioEntity(String cpf, String nome, LocalDate nascimento, String email) { }
+
+    public static UsuarioEntity fromUsuario(Usuario usuario) {
+        return new UsuarioEntity(
+                usuario.getCpf(),
+                usuario.getNome(),
+                usuario.getNascimento(),
+                usuario.getEmail()
+        );
+    }
+
+    public static Usuario toDomain(UsuarioEntity usuario) {
+        return new Usuario(
+                usuario.getCpf(),
+                usuario.getNome(),
+                usuario.getNascimento(),
+                usuario.getEmail()
+        );
+    }
 
     public Long getId() {
         return id;

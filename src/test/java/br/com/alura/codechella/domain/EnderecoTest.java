@@ -3,8 +3,6 @@ package br.com.alura.codechella.domain;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class EnderecoTest {
 
     private final String cep = "12345-000";
