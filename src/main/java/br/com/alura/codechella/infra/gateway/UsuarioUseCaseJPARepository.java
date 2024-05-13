@@ -24,6 +24,7 @@ public class UsuarioUseCaseJPARepository implements UsuarioUseCaseRepository {
 
     @Override
     public Usuario register(Usuario usuario) {
-        return this.mapper.toDomain(this.repository.save(this.mapper.toEntity(usuario)));
+        this.repository.save(this.mapper.toEntity(usuario));
+        return usuario;
     }
 }

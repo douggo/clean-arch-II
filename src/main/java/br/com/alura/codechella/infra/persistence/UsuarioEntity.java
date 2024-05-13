@@ -21,7 +21,14 @@ public class UsuarioEntity {
 
     private String email;
 
-    public UsuarioEntity(String cpf, String nome, LocalDate nascimento, String email) { }
+    public UsuarioEntity() { }
+
+    public UsuarioEntity(String cpf, String nome, LocalDate nascimento, String email) {
+        this.cpf = cpf;
+        this.nome = nome;
+        this.nascimento = nascimento;
+        this.email = email;
+    }
 
     public static UsuarioEntity fromUsuario(Usuario usuario) {
         return new UsuarioEntity(
