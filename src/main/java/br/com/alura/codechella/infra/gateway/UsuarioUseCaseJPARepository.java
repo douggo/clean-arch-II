@@ -6,7 +6,6 @@ import br.com.alura.codechella.infra.persistence.UsuarioEntity;
 import br.com.alura.codechella.infra.persistence.UsuarioRepository;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class UsuarioUseCaseJPARepository implements UsuarioUseCaseRepository {
 
