@@ -45,6 +45,17 @@ public class Usuario {
         this.endereco = endereco;
     }
 
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "cpf='" + cpf + '\'' +
+                ", nome='" + nome + '\'' +
+                ", nascimento=" + nascimento +
+                ", email='" + email + '\'' +
+                ", endereco=" + endereco +
+                '}';
+    }
+
     static class Validator {
 
         public static void validateData(String cpf, String nome, LocalDate nascimento, String email) {

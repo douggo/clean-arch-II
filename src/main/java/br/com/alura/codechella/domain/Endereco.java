@@ -27,6 +27,15 @@ public class Endereco {
         return complemento;
     }
 
+    @Override
+    public String toString() {
+        return "Endereco{" +
+                "cep='" + cep + '\'' +
+                ", numero=" + numero +
+                ", complemento='" + complemento + '\'' +
+                '}';
+    }
+
     static class Validator {
 
         public static void validateAll(String cep, int numero, String complemento) {
