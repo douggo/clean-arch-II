@@ -20,7 +20,7 @@ public record UsuarioDto(
         );
     }
 
-    public UsuarioDto fromDomain(Usuario usuario) {
+    public static UsuarioDto fromDomain(Usuario usuario) {
         return new UsuarioDto(
                 usuario.getCpf(),
                 usuario.getNome(),

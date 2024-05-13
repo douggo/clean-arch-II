@@ -2,9 +2,11 @@ package br.com.alura.codechella.infra.gateway;
 
 import br.com.alura.codechella.application.gateway.UsuarioUseCaseRepository;
 import br.com.alura.codechella.domain.entities.usuario.Usuario;
+import br.com.alura.codechella.infra.persistence.UsuarioEntity;
 import br.com.alura.codechella.infra.persistence.UsuarioRepository;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class UsuarioUseCaseJPARepository implements UsuarioUseCaseRepository {
 
@@ -18,8 +20,7 @@ public class UsuarioUseCaseJPARepository implements UsuarioUseCaseRepository {
 
     @Override
     public List<Usuario> listAll() {
-        //return this.repository.findAll();
-        return List.of();
+        return this.repository.findAll().stream().map(UsuarioEntity::toDomain).toList();
     }
 
     @Override
@@ -27,4 +28,5 @@ public class UsuarioUseCaseJPARepository implements UsuarioUseCaseRepository {
         this.repository.save(this.mapper.toEntity(usuario));
         return usuario;
     }
+
 }

@@ -11,7 +11,8 @@ public class RegisterUsuario  {
         this.repository = repository;
     }
 
-    public Usuario registerUsuario(Usuario usuario) {
+    public Usuario execute(Usuario usuario) {
         return this.repository.register(usuario);
     }
+
 }
